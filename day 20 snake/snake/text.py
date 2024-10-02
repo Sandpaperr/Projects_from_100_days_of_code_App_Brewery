@@ -1,5 +1,7 @@
 from turtle import Turtle
+import os
 
+HIGHSCORE_FILE = os.path.join(os.getcwd(), "day 20 snake", "snake", "hightscore.txt")
 ALIGNMENT = "center"
 FONT = ("Courier", 24, "normal")
 
@@ -11,7 +13,7 @@ class Text(Turtle):
         self.penup()
         self.goto(0, 260)
         self.score = 0
-        self.hightscore_file_name = r"snake\hightscore.txt"
+        self.hightscore_file_name = HIGHSCORE_FILE
         with open(self.hightscore_file_name) as file:
             self.hightscore = int(file.read())
 
