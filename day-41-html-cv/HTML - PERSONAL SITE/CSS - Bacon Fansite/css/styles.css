@@ -1,0 +1,33 @@
+/****************** TAG SELECTORS *******************/
+h1 {
+  color: red;
+}
+
+img{
+  height: 150px;
+  width: 150px;
+}
+
+img:hover{
+  background-color: white;
+}
+
+/***************** CLASS SELECTORS ****************/
+
+.bacon {
+  background-color: green;
+}
+
+.broccoli {
+  background-color: red;
+}
+
+.circular {
+  border-radius: 100%;
+}
+
+/***************** ID SELECTORS ****************/
+/* ID are one use selectors. You cannot have 2 different elements with thhe same ID*/
+#heading {
+  color: blue;
+}
