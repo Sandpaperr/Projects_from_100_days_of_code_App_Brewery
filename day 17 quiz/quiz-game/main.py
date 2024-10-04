@@ -1,3 +1,5 @@
+# This code is built upon a skeleton provided by App Brewery.
+# Modifications and further implementations were done by Leandro.
 from data import question_data
 from question_model import Question
 from quiz_brain import QuizBrain
