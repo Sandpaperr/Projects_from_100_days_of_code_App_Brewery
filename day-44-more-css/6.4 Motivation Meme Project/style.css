@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    height: 100vh; /* Ensures the body takes up the full height of the viewport */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+}
+
+div{
+    width: 200px;
+    height: 200px;
+}
+
+#mainbox{
+    background-color: black;
+}
