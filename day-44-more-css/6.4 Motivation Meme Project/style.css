@@ -1,16 +1,31 @@
+html{
+    background-color: black;
+}
+
 body{
     margin: 0;
     height: 100vh; /* Ensures the body takes up the full height of the viewport */
     display: flex;
-    justify-content: center; /* Centers horizontally */
     align-items: center; /* Centers vertically */
 }
 
-div{
-    width: 200px;
-    height: 200px;
+h1 {
+    text-transform: uppercase;
+    font-size: 3rem;
 }
 
-#mainbox{
-    background-color: black;
+
+#imginframe{
+    width: 100%;
+    border: 5px solid white;
+    box-sizing: border-box;
+}
+
+.poster{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 100px;
+    color: white;
+    font-family: "Libre Baskerville", serif;
+    text-align: center;
 }
