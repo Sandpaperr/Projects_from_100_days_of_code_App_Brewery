@@ -1,3 +1,6 @@
+# This code is built upon a skeleton provided by App Brewery.
+# Modifications and further implementations were done by Leandro.
+
 #1. Create a greeting for your program.
 print("Band Name Generator")
 
