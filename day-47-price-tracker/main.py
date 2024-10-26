@@ -8,8 +8,9 @@ import smtplib
 load_dotenv()
 
 MY_EMAIL = os.getenv("MY_EMAIL")
-SMTP_ADDRESS = ""
-PASSWORD = ""
+RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+SMTP_ADDRESS = os.getenv("SMTP_ADDRESS")
+PASSWORD = os.getenv("PASSWORD")
 
 
 #Static URL for amazon
@@ -42,6 +43,6 @@ if price < BUY_PRICE:
         result = connection.login(MY_EMAIL, PASSWORD)
         connection.sendmail(
             from_addr=MY_EMAIL,
-            to_addrs=MY_EMAIL,
+            to_addrs=RECEIVER_EMAIL,
             msg=f"Subject:Amazon Price Alert!\n\n{message}\n{url}".encode("utf-8")
         )
