@@ -21,30 +21,49 @@ driver = webdriver.Chrome(options=chrome_options)
 
 
 #Python.org
+#multiple ways to find elements
+# driver.get("https://www.python.org/")
+
+# search_bar = driver.find_element(By.NAME, value="q")
+
+# #things I can do with driver element
+
+# #get placeholder value
+# print (search_bar.get_attribute("placeholder"))
+
+# #get the tag name
+# print(search_bar.tag_name)
+
+# button = driver.find_element(By.ID, value="submit")
+# print(button.size)
+
+# #find by CSS selector
+# documentation_link = driver.find_element(By.CSS_SELECTOR, value=".documentation-widget a")
+# print(documentation_link.text)
+
+
+# #If all the method to find an element fail
+# #use Xpath -> way to locate an element by path structure
+# link_end = driver.find_element(By.XPATH, value=r'//*[@id="site-map"]/div[2]/div/ul/li[2]/a')
+# print(link_end.text)
+
+#Extract upcoming event data from python.org website and put them in a python dict
 driver.get("https://www.python.org/")
 
-search_bar = driver.find_element(By.NAME, value="q")
+dates = driver.find_elements(By.CSS_SELECTOR, value=".event-widget time")
+titles = driver.find_elements(By.CSS_SELECTOR, value=".event-widget li a")
+events = {}
 
-#things I can do with driver element
-
-#get placeholder value
-print (search_bar.get_attribute("placeholder"))
-
-#get the tag name
-print(search_bar.tag_name)
-
-button = driver.find_element(By.ID, value="submit")
-print(button.size)
-
-#find by CSS selector
-documentation_link = driver.find_element(By.CSS_SELECTOR, value=".documentation-widget a")
-print(documentation_link.text)
+#add all the element to a dict
+for i in range(len(dates)):
+    events[i] = {
+        "time" : dates[i].text,
+        "name" : titles[i].text,
+        }
+    
 
 
-#If all the method to find an element fail
-#use Xpath -> way to locate an element by path structure
-link_end = driver.find_element(By.XPATH, value=r'//*[@id="site-map"]/div[2]/div/ul/li[2]/a')
-print(link_end.text)
+
 
 #to close the single page browser
 driver.close()
