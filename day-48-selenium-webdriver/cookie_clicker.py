@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import StaleElementReferenceException, NoSuchElementException, NoSuchWindowException
 import time
 
 #Keep the Chrome browser open after program finishes
@@ -20,28 +21,41 @@ cookie_to_click = driver.find_element(By.ID, value="cookie")
 def cookie_click_5_seconds():
     start_time = time.time()
 
-    while time.time() - start_time < 5:
+    while time.time() - start_time < 1:
         cookie_to_click.click()
 
 def upgrade():
-    #store my money
-    my_money = int(driver.find_element(By.ID, value='money').text)
 
     #store all the upgrades available
-    upgrades = driver.find_elements(By.CSS_SELECTOR, value="#store div:not(.grayed)")
-    print(upgrades)
-
-    
-
-    #TODO: fix bug, after first upgrade, it stops
+    upgrades = driver.find_elements(By.CSS_SELECTOR, value="#store div:not(.grayed):not(.amount)")
+        
     #If I can still buy upgrades
     while upgrades:
-        #get the greatest upgrade we can afford
-        id_upgrade = upgrades[-1].get_attribute("id")
-        upgrade_to_buy = driver.find_element(By.ID, value=id_upgrade)
-        upgrade_to_buy.click()
+        try:
+            #get the greatest upgrade we can afford
+            id_upgrade = upgrades[-1].get_attribute("id")
+        
+            print(f"Attempting to buy upgrade with ID: {id_upgrade}")
 
-        upgrades = driver.find_elements(By.CSS_SELECTOR, value="#store div:not(.grayed)")
+            # Click on the upgrade
+            upgrade_to_buy = driver.find_element(By.ID, id_upgrade)
+            upgrade_to_buy.click()
+        except StaleElementReferenceException:
+            print("Stale reference encountered. Skipping this upgrade.")
+        except NoSuchElementException:
+            print("No such element")
+            for upgrade in upgrades:
+                print(upgrade.text)
+
+        try:
+            #store all the upgrades available
+            upgrades = driver.find_elements(By.CSS_SELECTOR, value="#store div:not(.grayed):not(.amount)")
+
+        except NoSuchWindowException:
+            upgrades = None
+    else:
+        print("No available upgrades at the moment.")
+        upgrades = None
 
 
         
