@@ -49,4 +49,16 @@ sign_in_button.click()
 time.sleep(5)
 all_listings = driver.find_elements(by=By.CSS_SELECTOR, value=".job-card-container--clickable")
 
-#TODO: create a file where I put all the jobs I have applied for 
+
+#Instead of applying, I will just save the job. So I can check it later
+for job in all_listings:
+    print(job.text)
+    job.click()
+    time.sleep(1)
+    save_button = driver.find_element(By.CSS_SELECTOR, value=".jobs-save-button")
+    save_button.click()
+
+#TODO: edge cases
+#TODO: actually apply
+#TODO: handle various first page redirections
+#TODO: make a list of multiple job search and run the code iterating through them 
