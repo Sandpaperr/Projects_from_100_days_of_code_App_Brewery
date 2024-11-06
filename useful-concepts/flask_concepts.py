@@ -10,6 +10,7 @@ def greet(name):
 
 # we can also store the path from <name> to everything after that
 #path capture everything between username and /1/ll...
+#the variable captured are to be considered kwargs, not args. Flask dinamically use them 
 @app.route("/username/<path:path>/1/ll/<int:number>/alba")
 def greet(path, number):
     return f"greeting {path}"
