@@ -11,6 +11,10 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
+@app.route("/bye")
+def say_bye():
+    return "Bye"
+
 #Common way to use __name__
 if __name__ == "__main__":
     app.run()
