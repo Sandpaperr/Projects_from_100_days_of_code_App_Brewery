@@ -24,6 +24,10 @@ def say_bye():
 def say_greetings():
     print("How are you?")
 
-
 say_hello()
 say_greetings()
+
+# the @decorator is a sintactic sugar, an easier way to write an alternative line of code. 
+#The "proper" line is this
+decorated_function = delay_decorator(say_greetings)
+decorated_function()
